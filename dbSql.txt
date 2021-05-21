@@ -1,0 +1,66 @@
+
+
+
+CREATE DATABASE IF NOT EXISTS `locadora`;
+ USE `locadora`;
+
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `user` (`id`, `email`, `name`, `password`, `createdAt`, `updatedAt`) VALUES
+	('97bd0092-aec6-45d8-8fb5-31cda393597c', 'tiago@hotmail.com', 'Tiago', '$2b$10$Ep6KPzt5g5mU71EDAesgU.wABaYdhBI9BT8YHOTc/B/dw33XMV8Qy', '2021-05-21 05:14:06', '2021-05-21 05:14:06');
+
+
+CREATE TABLE IF NOT EXISTS `film` (
+  `id` varchar(255) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `editor` varchar(255) DEFAULT NULL,
+  `copies` int DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `film` (`id`, `title`, `editor`, `copies`, `createdAt`, `updatedAt`) VALUES
+	('9c376b19-7922-4415-87f0-e3d19a489b11', 'New Film', 'Editor', 1, '2021-05-21 11:55:02', '2021-05-21 11:55:02');
+
+CREATE TABLE IF NOT EXISTS `auth` (
+  `id` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `isExpired` tinyint(1) DEFAULT NULL,
+  `UserId` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `token` (`token`),
+  KEY `UserId` (`UserId`),
+  CONSTRAINT `auth_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `user` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+CREATE TABLE IF NOT EXISTS `rent` (
+  `id` varchar(255) NOT NULL,
+  `UserId` varchar(255) DEFAULT NULL,
+  `FilmId` varchar(255) DEFAULT NULL,
+  `isRent` tinyint(1) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `UserId` (`UserId`),
+  KEY `FilmId` (`FilmId`),
+  CONSTRAINT `rent_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `rent_ibfk_2` FOREIGN KEY (`FilmId`) REFERENCES `film` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+

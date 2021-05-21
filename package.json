@@ -1,0 +1,82 @@
+{
+  "name": "projeto",
+  "version": "1.0.0",
+  "description": "projeto",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
+  "dependencies": {
+    "@nestjs/bull": "^0.3.1",
+    "@nestjs/common": "7.6.15",
+    "@nestjs/core": "7.6.15",
+    "@nestjs/jwt": "^6.1.2",
+    "@nestjs/passport": "^6.2.0",
+    "@nestjs/platform-express": "7.6.15",
+    "@nestjs/swagger": "^4.8.0",
+    "@types/jest": "^24.0.19",
+    "@types/uuid": "^3.4.6",
+    "@types/validator": "^12.0.1",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
+    "email-validator": "^2.0.4",
+    "mysql2": "1.7.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "6.5.3",
+    "sequelize": "5.19.6",
+    "sequelize-typescript": "1.0.0",
+    "swagger-ui-express": "^4.1.6",
+    "typescript": "3.6.4"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "6.10.4",
+    "@nestjs/testing": "^6.8.3",
+    "@types/bcrypt": "^5.0.0",
+    "@types/bull": "^3.15.0",
+    "@types/express": "4.17.1",
+    "@types/node": "14.14.35",
+    "@types/passport-local": "^1.0.33",
+    "@types/sequelize": "^4.28.8",
+    "@types/ws": "6.0.3",
+    "jest": "24.9.0",
+    "mocha-param": "^2.0.0",
+    "prettier": "1.18.2",
+    "ts-jest": "24.1.0",
+    "ts-loader": "6.2.0",
+    "ts-node": "8.4.1",
+    "tsconfig-paths": "3.9.0",
+    "tslint": "5.20.0",
+    "typescript": "3.6.4"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node"
+  }
+}
